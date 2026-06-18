@@ -44,7 +44,12 @@ export const formatWeight = (kg: number): string => {
  */
 export const formatBags = (bagCount: number, weightPerBagKg: number): string => {
   const bagLabel = bagCount === 1 ? 'bag' : 'bags'
-  return `${bagCount} × ${weightPerBagKg}kg ${bagLabel}`
+  const formattedCount = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(bagCount)
+
+  return `${formattedCount} × ${weightPerBagKg}kg ${bagLabel}`
 }
 
 /**
@@ -71,11 +76,7 @@ export const formatCommodity = (commodity: string): string => {
     return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
   })
 
-  // If multiple parts (e.g., ["MAIZE", "WHITE"]), reverse for display (descriptor first)
-  if (capitalizedParts.length > 1) {
-    capitalizedParts.reverse()
-  }
-
+  // Join parts in original order (known labels are handled above)
   return capitalizedParts.join(' ')
 }
 
