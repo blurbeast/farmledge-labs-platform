@@ -1,19 +1,20 @@
 import { Router } from 'express'
+import { requireJWT } from '../middleware/auth.middleware.js'
 
 export const farmerRouter = Router()
 
-farmerRouter.get('/farmers/:farmer_id/tokens', (req, res) => {
-  res.status(200).json({ success: true, data: 'STUB — GET /api/v1/farmers/:farmer_id/tokens' })
+farmerRouter.get('/api/v1/farmers/:farmer_id/tokens', requireJWT, (req, res) => {
+  res.status(200).json({ success: true, data: 'STUB — getFarmerTokens' })
 })
 
-farmerRouter.get('/farmers/:farmer_id/history', (req, res) => {
-  res.status(200).json({ success: true, data: 'STUB — GET /api/v1/farmers/:farmer_id/history' })
+farmerRouter.get('/api/v1/farmers/:farmer_id/history', requireJWT, (req, res) => {
+  res.status(200).json({ success: true, data: 'STUB — getFarmerHistory' })
 })
 
-farmerRouter.post('/transfers', (req, res) => {
-  res.status(200).json({ success: true, data: 'STUB — POST /api/v1/transfers' })
+farmerRouter.post('/api/v1/transfers', requireJWT, (req, res) => {
+  res.status(200).json({ success: true, data: 'STUB — createTransfer' })
 })
 
-farmerRouter.get('/certificates/:token_id', (req, res) => {
-  res.status(200).json({ success: true, data: 'STUB — GET /api/v1/certificates/:token_id' })
+farmerRouter.get('/api/v1/certificates/:token_id', requireJWT, (req, res) => {
+  res.status(200).json({ success: true, data: 'STUB — getCertificate' })
 })

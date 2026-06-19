@@ -1,15 +1,16 @@
 import { Router } from 'express'
+import { requireJWT } from '../middleware/auth.middleware.js'
 
 export const custodianRouter = Router()
 
-custodianRouter.post('/deposits', (req, res) => {
-  res.status(200).json({ success: true, data: 'STUB — POST /api/v1/deposits' })
+custodianRouter.post('/api/v1/deposits', requireJWT, (req, res) => {
+  res.status(200).json({ success: true, data: 'STUB — createDeposit' })
 })
 
-custodianRouter.post('/exits/:token_id', (req, res) => {
-  res.status(200).json({ success: true, data: 'STUB — POST /api/v1/exits/:token_id' })
+custodianRouter.post('/api/v1/exits/:token_id', requireJWT, (req, res) => {
+  res.status(200).json({ success: true, data: 'STUB — createExit' })
 })
 
-custodianRouter.get('/warehouse/:warehouse_id/inventory', (req, res) => {
-  res.status(200).json({ success: true, data: 'STUB — GET /api/v1/warehouse/:warehouse_id/inventory' })
+custodianRouter.get('/api/v1/warehouse/:warehouse_id/inventory', requireJWT, (req, res) => {
+  res.status(200).json({ success: true, data: 'STUB — getWarehouseInventory' })
 })
